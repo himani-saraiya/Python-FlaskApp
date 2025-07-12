@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('export_pdf') }}" class="btn btn-dark mb-2">Export to PDF</a>
+
+<a href="/add" class="btn btn-success mb-3">Add Student</a>
+<form method="GET" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search by name or age" value="{{ query }}">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th><th>Name</th><th>Age</th><th>Actions</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>
+            <a href="/edit/{{ student.id }}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="/delete/{{ student.id }}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

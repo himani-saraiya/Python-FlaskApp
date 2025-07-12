@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+<form method="POST">
+    <div class="mb-3">
+        <label>Name</label>
+        <input name="name" class="form-control" value="{{ student.name if student else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label>Age</label>
+        <input name="age" type="number" class="form-control" value="{{ student.age if student else '' }}" required>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
